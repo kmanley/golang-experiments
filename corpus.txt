@@ -1,0 +1,11 @@
+Computer programming is the art, craft and science of
+writing programs which define how computers operate.
+This book will teach you how to write computer pro-
+grams using a programming language designed by
+Google named Go.
+Go is a general purpose programming language with
+advanced features and a clean syntax. Because of its
+wide availability on a variety of platforms, its robust
+well-documented common library, and its focus on
+good software engineering principles, Go is an ideal
+language to learn as your first programming language
