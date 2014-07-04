@@ -3,6 +3,7 @@ package main
 import "fmt"
 import "bytes"
 import "encoding/json"
+import "errors"
 
 func encode() {
 	indata := []interface{}{1, 2, "a", "b", "c"}
@@ -21,7 +22,17 @@ func decode() {
 
 }
 
+func encodeErrorObj() {
+	// TODO: seems that errors.Error can't be json encoded
+	myerror := errors.New("something terrible has happened")
+	buff := bytes.NewBufferString("")
+	enc := json.NewEncoder(buff)
+	enc.Encode(myerror)
+	fmt.Println(buff.String())
+}
+
 func main() {
-	encode()
-	decode()
+	//encode()
+	//decode()
+	encodeErrorObj()
 }
