@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/braintree/manners"
+	//"github.com/braintree/manners"
+	"github.com/kmanley/manners"
 	"io"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 var quitChan = make(chan os.Signal, 1)
@@ -35,6 +37,7 @@ func main() {
 	http.HandleFunc("/foo", Hello)
 	go waitForSignal()
 	fmt.Println("listening...")
+	server.InnerServer.ReadTimeout = 5 * time.Second
 	server.ListenAndServe(":8080", nil)
 	fmt.Println("exiting")
 
