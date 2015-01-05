@@ -30,7 +30,7 @@ func main() {
 			fmt.Println(string(bytes))
 			resp.Body.Close()
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(10 * time.Second)
 		ctr += 1
 	}
 }

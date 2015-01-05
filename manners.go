@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	//"github.com/braintree/manners"
 	"github.com/kmanley/manners"
 	"io"
 	"net/http"
@@ -23,7 +22,7 @@ func Hello(w http.ResponseWriter, req *http.Request) {
    e.g. if you run this, then make a request with curl, then ctrl-c this process,
    it shuts down gracefully. But if you make the request with Chrome or Firefox,
    then ctrl-c this process, the http server doesn't quit until you close the
-   browser tab */
+   browser tab (firefox) or entire browser (chrome) */
 func waitForSignal() {
 	fmt.Println("waiting for signal")
 	<-quitChan
@@ -40,5 +39,4 @@ func main() {
 	server.InnerServer.ReadTimeout = 5 * time.Second
 	server.ListenAndServe(":8080", nil)
 	fmt.Println("exiting")
-
 }
