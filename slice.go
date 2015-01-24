@@ -9,5 +9,7 @@ func main() {
   print(slice1[3:])
   print(slice1[:3])
   print(slice1[:])
+  print(slice1[2:4])
+
   //print(reversed(slice1[::-1])
 }
