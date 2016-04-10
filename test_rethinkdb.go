@@ -14,7 +14,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error connecting to DB: %s", err)
 	}
-	curs, err := r.Db("test").Table("user").Get("kevin.manley@gmail.com").Run(sess)
+	curs, err := r.Db("test").Table("user").Get("foobar@gmail.com").Run(sess)
+	if err != nil {
+		log.Fatalf("Error:", err)
+	}
 	var response string
 	err = curs.One(&response)
 	fmt.Println(response)
