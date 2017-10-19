@@ -1,3 +1,4 @@
+
 function Node(data) {
   this.data = data;
   this.children = [];
@@ -132,6 +133,7 @@ Tree.prototype.printByLevel = function() {
   console.log(string.trim());
 };
 
+/*
 var tree = new Tree();
 tree.add('ceo');
 tree.add('cto', 'ceo');
@@ -155,3 +157,75 @@ tree.remove('cmo');
 tree.print(); // => ceo | cto cfo | dev1 dev2 dev3 accountant
 tree.remove('cfo');
 tree.print(); // => ceo | cto | dev1 dev2 dev3
+*/
+
+	/*
+		r.db("blog").table("users").filter({name: "Michel"});
+
+		FILTER = 39     // from ql2.proto
+		TABLE = 15
+		DB = 14
+
+		r.db("blog") =>
+			[14, ["blog"]]
+
+		r.db("blog").table("users") =>
+			[15, [[14, ["blog"]], "users"]]
+
+		r.db("blog").table("users").filter({name: "Michel"}) =>
+			[39, [[15, [[14, ["blog"]], "users"]], {"name": "Michel"}]]
+	*/
+
+function mydump(arr,level) {
+    var dumped_text = "";
+    if(!level) level = 0;
+
+    var level_padding = "";
+    for(var j=0;j<level+1;j++) level_padding += "    ";
+
+    if(typeof(arr) == 'object') {  
+        for(var item in arr) {
+            var value = arr[item];
+
+            if(typeof(value) == 'object') { 
+                dumped_text += level_padding + "'" + item + "' ...\n";
+                dumped_text += mydump(value,level+1);
+            } else {
+                dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+            }
+        }
+    } else { 
+        dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+    }
+    return dumped_text;
+}
+
+
+function Term(type, args) {
+    this.type = type;
+    this.args = args;
+}
+
+function constructMethodTerm(prevVal, type, args) {
+	args = [prevVal, args];
+	return new Term(type, args);
+}
+
+Term.prototype.db = function(name) {
+    return constructMethodTerm(this, 14, name);
+}
+
+Term.prototype.table = function(name) {
+    return constructMethodTerm(this, 15, name);
+}
+
+Term.prototype.build = function() {
+     
+}
+
+var r = new Term();
+var res = r.db("foo").table("users");
+
+console.log(mydump(res));
+
+
