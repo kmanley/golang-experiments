@@ -9,7 +9,7 @@ import (
 )
 
 func testGetCustomer(client *exigo.Client) {
-	res, err := client.GetCustomerByID(14)
+	res, err := client.GetCustomerByID(20)
 	if err != nil {
 		glog.Errorf("GetCustomerByID error: %s", err)
 	} else {
